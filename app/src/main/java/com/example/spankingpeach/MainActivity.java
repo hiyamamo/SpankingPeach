@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.spankingpeach.screen.MainSurfaceView;
+import com.example.spankingpeach.game.MainSurfaceView;
 
 
 public class MainActivity extends Activity {
