@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.spankingpeach.R;
-import com.example.spankingpeach.listener.GameTouchListener;
 
 /**
  * Created by dev on 14/07/29.
