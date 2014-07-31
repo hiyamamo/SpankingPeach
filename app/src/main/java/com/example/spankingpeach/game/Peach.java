@@ -26,10 +26,10 @@ public class Peach extends Task{
 
     @Override
     public void onTouch() {
-        y -= 30;
-        if(y < 500){
-            y = 800;
-        }
+      //  y -= 30;
+      //  if(y < 500){
+      //      y = 800;
+       // }
     }
 
     @Override
