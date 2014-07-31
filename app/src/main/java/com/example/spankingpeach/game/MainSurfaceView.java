@@ -15,6 +15,7 @@ public class MainSurfaceView  extends SurfaceView implements SurfaceHolder.Callb
 
     public MainSurfaceView(Context context) {
         super(context);
+        setOnTouchListener(gameMng.getTouchListener());
         getHolder().addCallback(this);
     }
 

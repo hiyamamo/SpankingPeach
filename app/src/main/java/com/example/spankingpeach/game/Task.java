@@ -11,9 +11,14 @@ public abstract class Task {
     protected Task() {
     }
 
+    //更新
     public boolean onUpdate(){
         return true;
     }
 
+    //描画
     public void onDraw(Canvas c){}
+
+    //タッチコールバック
+    public void onTouch(){}
 }
