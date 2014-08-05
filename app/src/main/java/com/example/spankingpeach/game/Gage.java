@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.example.spankingpeach.R;
 
@@ -13,25 +14,35 @@ import com.example.spankingpeach.R;
  * Created by dev on 14/07/31.
  */
 public class Gage extends Task{
-    private float left;
-    private float top;
-    private float currentPos;
-    private float dstPos;
-    private float bottom;
+    private static final float OUTER_POS_LEFT = 30;
+    private static final float OUTER_POS_TOP = 280;
+    private static final int INNER_LEFT = 50;
+    private static final int INNER_TOP = 300;
+    private int currentPos;
+    private  int dstPos;
 
     private Paint paint = new Paint();
-    private Paint dstPaint = new Paint();
-    private Bitmap bitmap;
-    private long counter;
+    private Bitmap outerBitmap;
+    private Bitmap innerBitmap;
+    private int counter;
+
+    private int innerHeight;
+    private int innerWidth;
+    private Rect srcR;
+    private Rect dstR;
     public Gage(Resources res) {
-        left = 30;
-        top =280;
-        bottom = 280+900;
-        currentPos = bottom;
-        dstPos = bottom;
         counter = 0;
-        dstPaint.setColor(Color.BLUE);
-        bitmap = BitmapFactory.decodeResource(res, R.drawable.gage);
+        outerBitmap = BitmapFactory.decodeResource(res, R.drawable.gage);
+        innerBitmap = BitmapFactory.decodeResource(res, R.drawable.gage_innner);
+
+        innerHeight = innerBitmap.getHeight();
+        innerWidth = innerBitmap.getWidth();
+        int outerw = outerBitmap.getWidth();
+        int ounterh = outerBitmap.getHeight();
+        currentPos = INNER_TOP+innerHeight;
+        dstPos = currentPos;
+        srcR = new Rect(0,0,innerWidth,innerHeight);
+        dstR = new Rect(INNER_LEFT,currentPos,INNER_LEFT+innerWidth-20,INNER_TOP+innerHeight-20);
     }
 
     @Override
@@ -43,21 +54,25 @@ public class Gage extends Task{
 
     @Override
     public boolean onUpdate() {
-        float offset = currentPos - dstPos;
-        float inc = offset / (30 - counter);
+        int offset = currentPos - dstPos;
+        if(counter >= 30){
+            counter = 0;
+        }
+        int inc = offset / (30 - counter);
         if(inc > 0) {
             currentPos -= inc;
         }
-        if(currentPos <= 280){
-            currentPos = 280;
+        if(currentPos <= INNER_TOP){
+            currentPos = INNER_TOP;
         }
+        dstR.set(INNER_LEFT,currentPos,INNER_LEFT+innerWidth-20,INNER_TOP+innerHeight-20);
         counter++;
         return super.onUpdate();
     }
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawBitmap(bitmap,left,top,paint);
-        c.drawRect(left, currentPos,left+100,bottom,dstPaint);
+        c.drawBitmap(outerBitmap,OUTER_POS_LEFT,OUTER_POS_TOP,paint);
+        c.drawBitmap(innerBitmap,srcR,dstR,paint);
     }
 }
