@@ -19,7 +19,7 @@ public class GameMng {
         taskList.add(new Bg(res));
         taskList.add(new FpsController());
         taskList.add(new Peach(res));
-        taskList.add(new Gage(res));
+        taskList.add(new Gage());
     }
 
     public boolean onUpdate(){

@@ -2,8 +2,10 @@ package com.example.spankingpeach.game;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
 /**
  * Created by dev on 14/07/28.
@@ -12,7 +14,6 @@ public class MainSurfaceView  extends SurfaceView implements SurfaceHolder.Callb
 
     private GameMng gameMng = new GameMng(getResources());
     private Thread thread;
-
     public MainSurfaceView(Context context) {
         super(context);
         setOnTouchListener(gameMng.getTouchListener());
