@@ -2,12 +2,10 @@ package com.example.spankingpeach.game.View;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.WindowManager;
 
-import com.example.spankingpeach.game.GameMng;
+import com.example.spankingpeach.game.Task.GameMng;
 
 /**
  * Created by dev on 14/07/28.
