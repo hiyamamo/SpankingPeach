@@ -2,6 +2,10 @@ package com.example.spankingpeach.game;
 
 /**
  * ゲームの状態を管理するクラス
+ * BEFORE:開始前待機
+ * IN_GAME:ゲーム中
+ * PAUSE:ポーズ中
+ * GAME_OVER:ゲーム終了後
  */
 public class State {
     private static int mState;

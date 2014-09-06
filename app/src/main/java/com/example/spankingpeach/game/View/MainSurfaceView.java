@@ -5,25 +5,33 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.spankingpeach.game.Task.GameMng;
+import com.example.spankingpeach.game.GameMng;
 
 /**
  * Created by dev on 14/07/28.
  */
 public class MainSurfaceView  extends SurfaceView implements SurfaceHolder.Callback,Runnable {
 
-    private GameMng gameMng = new GameMng(getResources());
+    private GameMng gameMng;
     private Thread thread;
+    private final float VIEW_WIDTH = 600;
+    private final float VIEW_HEIGHT = 900;
+    private float mScale;
     public MainSurfaceView(Context context) {
         super(context);
-        setOnTouchListener(gameMng.getTouchListener());
+        gameMng = new GameMng(getResources());
         getHolder().addCallback(this);
+        setOnTouchListener(gameMng.getTouchListener());
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         thread = new Thread(this);
         thread.start();
+        float scaleX = getWidth() / VIEW_WIDTH;
+        float scaleY = getHeight() / VIEW_HEIGHT;
+        mScale = scaleX > scaleY ? scaleY : scaleX;
+        gameMng.setScale(mScale);
     }
 
     @Override
@@ -41,6 +49,8 @@ public class MainSurfaceView  extends SurfaceView implements SurfaceHolder.Callb
         if(c == null){
             return;
         }
+        //c.translate((getWidth() - VIEW_WIDTH) / 2 * mScale,(getHeight() - VIEW_HEIGHT) / 2 * mScale);
+        c.scale(mScale,mScale);
         gameMng.onDraw(c);
         holder.unlockCanvasAndPost(c);
     }
