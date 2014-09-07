@@ -19,7 +19,7 @@ public class MainSurfaceView  extends SurfaceView implements SurfaceHolder.Callb
     private float mScale;
     public MainSurfaceView(Context context) {
         super(context);
-        gameMng = new GameMng(getResources());
+        gameMng = new GameMng();
         getHolder().addCallback(this);
         setOnTouchListener(gameMng.getTouchListener());
     }

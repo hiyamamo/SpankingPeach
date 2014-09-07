@@ -30,12 +30,4 @@ public class CalcTime {
             mNowTime = 0;
         }
     }
-    // タイムオーバーしたか
-    public boolean isTimeOver(){
-        if(mNowTime == 0){
-            return true;
-        }
-        return false;
-    }
-
 }

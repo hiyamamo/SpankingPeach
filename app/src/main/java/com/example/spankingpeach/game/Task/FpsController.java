@@ -9,14 +9,18 @@ import android.graphics.Paint;
  * FPSを表示
  */
 public class FpsController extends Task{
+    private static FpsController mInstance = new FpsController();
     private long startTime = 0;
     private int cnt = 0;
     private Paint paint = new Paint();
     private float fps;
     private final static int NUNBER = 60;
     private final static int FONT_SIZE = 20;
+    public static FpsController getInstance(){
+        return mInstance;
+    }
 
-    public FpsController() {
+    private FpsController() {
         paint.setColor(Color.BLUE);
         paint.setTextSize(FONT_SIZE);
     }

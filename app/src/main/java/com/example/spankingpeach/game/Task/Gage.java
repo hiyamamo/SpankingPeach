@@ -9,7 +9,6 @@ import android.graphics.Rect;
 
 import com.example.spankingpeach.App;
 import com.example.spankingpeach.R;
-import com.example.spankingpeach.game.State;
 
 /**
  * Gage Class
@@ -17,6 +16,7 @@ import com.example.spankingpeach.game.State;
  * Created by dev on 14/07/31.
  */
 public class Gage extends Task{
+    private static Gage mGage = new Gage();
     private static final float OUTER_LEFT = 30;
     private static final float OUTER_TOP = 300;
     private static final int INNER_LEFT =(int)(OUTER_LEFT + 10);
@@ -33,7 +33,11 @@ public class Gage extends Task{
     private int counter; // 毎フレームカウント用カウンター
     private int innerHeight;
     private int innerWidth;
-    public Gage() {
+    private boolean mIsEnd;
+    public static Gage getInstance(){
+        return mGage;
+    }
+    private Gage() {
         counter = 0;
         Resources res =  App.getContext().getResources();
         outerBitmap = BitmapFactory.decodeResource(res, R.drawable.gage);
@@ -44,15 +48,17 @@ public class Gage extends Task{
         dstPos = currentPos;
         srcR = new Rect(0,0,innerWidth,innerHeight);
         dstR = new Rect(INNER_LEFT,currentPos,INNER_LEFT+innerWidth,INNER_TOP+innerHeight);
+        mIsEnd = false;
+    }
 
+    public boolean IsEnd(){
+       return mIsEnd;
     }
 
     @Override
     public void onTouch() {
-        if(State.getState() == State.IN_GAME) {
-            dstPos -= 30;
-            counter = 0;
-        }
+        dstPos -= 30;
+        counter = 0;
     }
 
     @Override
@@ -76,7 +82,7 @@ public class Gage extends Task{
         }
         if(currentPos <= INNER_TOP){
             currentPos = INNER_TOP;
-            State.setState(State.GAME_OVER);
+            mIsEnd = true; // 終了
         }
         counter = ++counter % COUNTER_MAX;
     }
