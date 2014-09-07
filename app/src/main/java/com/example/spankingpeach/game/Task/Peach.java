@@ -14,7 +14,7 @@ import com.example.spankingpeach.R;
 public class Peach extends Task{
     private Paint paint = new Paint();
     private Bitmap bitmap;
-    private final float POSITION_X = 50; // X座標
+    private final float POSITION_X = 90; // X座標
     private final float POSITION_Y = 550; // Y座標
 
     public Peach(Resources res) {

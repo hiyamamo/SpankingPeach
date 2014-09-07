@@ -18,9 +18,9 @@ import com.example.spankingpeach.game.State;
  */
 public class Gage extends Task{
     private static final float OUTER_LEFT = 30;
-    private static final float OUTER_TOP = 280;
-    private static final int INNER_LEFT =(int)(OUTER_LEFT + 5);
-    private static final int INNER_TOP = 300;
+    private static final float OUTER_TOP = 300;
+    private static final int INNER_LEFT =(int)(OUTER_LEFT + 10);
+    private static final int INNER_TOP = (int)(OUTER_TOP + 10);
     private final int COUNTER_MAX = 30; // ゲージが移動し終わるまでのフレーム数
     private int currentPos;
     private int dstPos;
