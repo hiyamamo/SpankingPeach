@@ -56,7 +56,7 @@ public class Gage extends Task{
     }
 
     @Override
-    public void onTouch() {
+    public void onTouch(float x,float y) {
         dstPos -= 30;
         counter = 0;
     }

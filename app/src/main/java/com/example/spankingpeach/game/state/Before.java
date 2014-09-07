@@ -23,8 +23,16 @@ public class Before extends ConcreteState{
     }
 
     @Override
-    public void onTouch(GameMng manager) {
+    public void onTouch(GameMng manager, float x, float y) {
         manager.setState(InGame.getInstance());
+    }
+
+    @Override
+    public void onUpdate(GameMng manager) {
+        LinkedList<Task> taskList = new LinkedList<Task>();
+        taskList.add(BeforeChar.getIntance());
+
+        execUpdate(taskList);
     }
 
     @Override

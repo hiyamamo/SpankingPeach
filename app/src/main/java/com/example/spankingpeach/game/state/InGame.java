@@ -38,12 +38,13 @@ public class InGame extends ConcreteState{
     }
 
     @Override
-    public void onTouch(GameMng manager) {
+    public void onTouch(GameMng manager, float x, float y) {
         LinkedList<Task> taskList = new LinkedList<Task>();
         taskList.add(Peach.getInstance());
-        taskList.add(Gage.getInstance());
-
-        execTouch(taskList);
+        if(Peach.getInstance().checkTouchRange(x,y)) {
+            taskList.add(Gage.getInstance());
+        }
+        execTouch(taskList, x, y);
     }
 
     @Override

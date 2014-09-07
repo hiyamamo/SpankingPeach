@@ -20,7 +20,7 @@ public abstract class ConcreteState implements State{
     }
 
     @Override
-    public void onTouch(GameMng manager) {
+    public void onTouch(GameMng manager, float x, float y) {
 
     }
 
@@ -36,9 +36,9 @@ public abstract class ConcreteState implements State{
             }
         }
     }
-    protected void execTouch(LinkedList<Task> taskList){
+    protected void execTouch(LinkedList<Task> taskList, float x, float y){
         for(Task t : taskList){
-            t.onTouch();
+            t.onTouch(x,y);
         }
     }
     protected void execDraw(LinkedList<Task> taskList,Canvas c){

@@ -22,7 +22,7 @@ public class Clear extends ConcreteState{
     private Clear(){}
 
     @Override
-    public void onTouch(GameMng manager) {
+    public void onTouch(GameMng manager, float x, float y) {
 
     }
 

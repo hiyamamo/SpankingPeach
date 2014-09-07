@@ -20,5 +20,5 @@ public abstract class Task {
     public void onDraw(Canvas c){}
 
     //タッチコールバック
-    public void onTouch(){}
+    public void onTouch(float x, float y){}
 }

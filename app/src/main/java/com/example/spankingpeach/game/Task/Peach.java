@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 import com.example.spankingpeach.App;
 import com.example.spankingpeach.R;
@@ -22,13 +23,28 @@ public class Peach extends Task{
     public static Peach getInstance(){
         return mInstance;
     }
+    private float mTouchRangeMaxX;
+    private float mTouchRangeMaxY;
+    private boolean isTouched;
+
     private Peach() {
         Resources res = App.getContext().getResources();
         bitmap = BitmapFactory.decodeResource(res, R.drawable.peach);
+
+        mTouchRangeMaxX = (bitmap.getWidth() + POSITION_X);
+        mTouchRangeMaxY = (bitmap.getHeight() + POSITION_Y);
+    }
+
+    public boolean checkTouchRange(float x,float y){
+        if(x > POSITION_X && x < mTouchRangeMaxX && y > POSITION_Y && y < mTouchRangeMaxY){
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void onTouch() {
+    public void onTouch(float x, float y) {
+        isTouched = checkTouchRange(x,y);
     }
 
 

@@ -28,7 +28,7 @@ public class TimeUp extends ConcreteState {
     }
 
     @Override
-    public void onTouch(GameMng manager) {
+    public void onTouch(GameMng manager, float x, float y) {
 
     }
 

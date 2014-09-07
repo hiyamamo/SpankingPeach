@@ -50,9 +50,4 @@ public class BeforeChar extends Task {
             c.drawText("tapで開始", TAP2START_WIDTH, TAP2START_HEIGHT, mPaint);
         }
     }
-
-    @Override
-    public void onTouch() {
-        super.onTouch();
-    }
 }
