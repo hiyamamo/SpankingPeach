@@ -14,6 +14,8 @@ public class Timer extends Task {
     private CalcTime mCalcTime = new CalcTime();
     private Paint mPaint = new Paint();
     private final float FONTSIZE = 60;
+    private final float WIDTH = 270;
+    private final float HEIGHT = 150;
 
     public Timer() {
         mPaint.setColor(Color.BLACK);
@@ -34,6 +36,6 @@ public class Timer extends Task {
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawText(String.valueOf(mCalcTime.getNowTime()),300,300,mPaint);
+        c.drawText(String.valueOf(mCalcTime.getNowTime()),WIDTH,HEIGHT,mPaint);
     }
 }
