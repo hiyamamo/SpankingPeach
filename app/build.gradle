@@ -1,13 +1,13 @@
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId "com.example.spankingpeach"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 20
         versionCode 1
         versionName "1.0"
     }
