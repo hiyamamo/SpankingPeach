@@ -1,13 +1,15 @@
+machine:
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --filter "android-20"
-
     - echo y | android update sdk --no-ui --filter "build-tools-20.0.0"
 
-machine:
-  environment:
-    ANDROID_HOME: /home/ubuntu/android
-  dependencies:
-    cache_directories:
-      - ~/.android
-      - ~/android
+  override:
+    - ./gradlew dependencies
+
+test:
+  override:
+    - ./gradlew build
