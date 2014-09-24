@@ -55,7 +55,4 @@ public class Timer extends Task {
         c.drawBitmap(mBitmap[tens_time],WIDTH,HEIGHT,mPaint);
         c.drawBitmap(mBitmap[ones_time],WIDTH + 48,HEIGHT,mPaint);
     }
-    public void setTimeUp(){
-        mIsTimeUp = true;
-    }
 }
