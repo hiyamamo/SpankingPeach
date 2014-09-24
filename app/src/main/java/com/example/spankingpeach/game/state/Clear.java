@@ -28,14 +28,6 @@ public class Clear extends ConcreteState{
 
     @Override
     public void onDraw(GameMng manager, Canvas c) {
-        LinkedList<Task> taskList = new LinkedList<Task>();
-        taskList.add(Bg.getInstance());
-        taskList.add(FpsController.getInstance());
-        taskList.add(Peach.getInstance());
-        taskList.add(Gage.getInstance());
-        taskList.add(Timer.getInstance());
-
-        execDraw(taskList,c);
-
+        super.onDraw(manager,c);
     }
 }

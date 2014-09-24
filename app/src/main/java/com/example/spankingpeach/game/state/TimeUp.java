@@ -19,30 +19,10 @@ public class TimeUp extends ConcreteState {
     public static TimeUp getInstance(){
         return mInstance;
     }
-    @Override
-    public void onUpdate(GameMng manager) {
-        LinkedList<Task> tasklist = new LinkedList<Task>();
-        tasklist.add(FpsController.getInstance());
-
-        execUpdate(tasklist);
-    }
-
-    @Override
-    public void onTouch(GameMng manager, float x, float y) {
-
-    }
 
     @Override
     public void onDraw(GameMng manager, Canvas c) {
-        LinkedList<Task> tasklist = new LinkedList<Task>();
-        tasklist.add(Bg.getInstance());
-        tasklist.add(FpsController.getInstance());
-        tasklist.add(Peach.getInstance());
-        tasklist.add(Gage.getInstance());
-        tasklist.add(Timer.getInstance());
-
-        execDraw(tasklist,c);
-
-
+        super.onDraw(manager, c);
     }
+
 }
