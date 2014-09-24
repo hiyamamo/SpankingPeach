@@ -1,6 +1,5 @@
 package com.example.spankingpeach.game.Task;
 
-import android.content.Context;
 import android.graphics.Canvas;
 
 /**
