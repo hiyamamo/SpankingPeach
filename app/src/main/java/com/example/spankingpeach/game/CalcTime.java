@@ -5,29 +5,33 @@ package com.example.spankingpeach.game;
  */
 public class CalcTime {
     private final int GAME_TIME = 30;
-    private final int FPS = 60;
-    private int mCounter;
-    private int mNowTime;
+    private long mNowTime;
+    private long mStartTime;
 
     public CalcTime() {
         this.mNowTime = GAME_TIME;
-        this.mCounter = FPS;
     }
 
     // 現在の時間を返す
-    public int getNowTime(){
+    public long getNowTime(){
         return mNowTime;
+    }
+    public void setStartTime(){
+        mStartTime = System.currentTimeMillis();
     }
 
     // 現在の時間を計算
-    public void calc(){
-        --mCounter;
-        if(mCounter == 0){
-            --mNowTime;
-            mCounter = FPS;
-        }
-        if(mNowTime <= 0){
+    public boolean calc(){
+        long current = System.currentTimeMillis();
+        long time_gone = (current - mStartTime) / 1000;
+        if(time_gone >= 30){
             mNowTime = 0;
+        }else {
+            mNowTime = GAME_TIME - time_gone;
         }
+        if(mNowTime == 0) {
+            return true;
+        }
+        return false;
     }
 }

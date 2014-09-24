@@ -11,6 +11,7 @@ import com.example.spankingpeach.game.Task.Peach;
 import com.example.spankingpeach.game.Task.Task;
 import com.example.spankingpeach.game.Task.Timer;
 
+import java.sql.Time;
 import java.util.LinkedList;
 
 /**
@@ -25,6 +26,8 @@ public class Before extends ConcreteState{
     @Override
     public void onTouch(GameMng manager, float x, float y) {
         manager.setState(InGame.getInstance());
+        // タイマーを初期化
+        Timer.getInstance().setStartTime();
     }
 
     @Override
