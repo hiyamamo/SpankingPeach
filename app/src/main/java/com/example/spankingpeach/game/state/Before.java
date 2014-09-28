@@ -7,6 +7,7 @@ import com.example.spankingpeach.game.Task.BeforeChar;
 import com.example.spankingpeach.game.Task.Bg;
 import com.example.spankingpeach.game.Task.FpsController;
 import com.example.spankingpeach.game.Task.Gage;
+import com.example.spankingpeach.game.Task.ItemIcon;
 import com.example.spankingpeach.game.Task.Peach;
 import com.example.spankingpeach.game.Task.Task;
 import com.example.spankingpeach.game.Task.Timer;
@@ -41,13 +42,8 @@ public class Before extends ConcreteState{
     @Override
     public void onDraw(GameMng manager, Canvas c) {
         LinkedList<Task> taskList = new LinkedList<Task>();
-        taskList.add(Bg.getInstance());
-        taskList.add(Peach.getInstance());
-        taskList.add(Gage.getInstance());
+        super.onDraw(manager,c);
         taskList.add(BeforeChar.getIntance());
-        taskList.add(FpsController.getInstance());
-        taskList.add(Timer.getInstance());
-
-        execDraw(taskList,c);
+        execDraw(taskList, c);
     }
 }
