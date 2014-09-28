@@ -16,7 +16,7 @@ public class ItemIcon extends Task {
     private ItemIcon(){
         Item item = new Item(1);
         mName = item.getName();
-        mPaint.setTextSize(20);
+        mPaint.setTextSize(30);
         mPaint.setColor(Color.BLACK);
     }
     public static ItemIcon getInstance(){
@@ -25,6 +25,6 @@ public class ItemIcon extends Task {
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawText(mName,50,100,mPaint);
+        c.drawText(mName,550,100,mPaint);
     }
 }
