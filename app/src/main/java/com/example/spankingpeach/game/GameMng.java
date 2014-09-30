@@ -28,20 +28,12 @@ public class GameMng {
 
     public boolean onUpdate(){
        mState.onUpdate(this);
-       // for(Iterator<Task> i = taskList.iterator();i.hasNext();){
-       //     if(!i.next().onUpdate()){
-       //         i.remove();
-       //     }
-//        }
 
         return true;
     }
     public void onDraw(Canvas c){
         c.drawColor(Color.WHITE);
         mState.onDraw(this,c);
-       // for (Task i : taskList) {
-       //     i.onDraw(c);
-//        }
     }
 
     //タッチリスナーインスタンス生成

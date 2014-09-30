@@ -10,6 +10,9 @@ import com.example.spankingpeach.database.DaoFactory;
  */
 public class Stage extends Entity {
     private String mName;
+    private int mInterval;
+    private int mSpeed;
+
     public Stage(int id) {
         super(id);
     }
@@ -25,5 +28,11 @@ public class Stage extends Entity {
     }
     public String getName(){
         return mName;
+    }
+    public int getInteravl(){
+        return mInterval;
+    }
+    public int getSpeed(){
+        return mSpeed;
     }
 }
