@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    sourceSets {
+        androidTest.setRoot('src/test')
+    }
     buildTypes {
         release {
             runProguard false
@@ -21,28 +24,21 @@ android {
     lintOptions {
         abortOnError false
     }
-    sourceSets {
-        main {
-            assets.srcDirs = ['src/main/assets', 'src/main/assets/']
-            java.srcDirs = ['src/main/java', 'src/test/java/']
-        }
-        androidTest {
-            setRoot('src/test')
-        }
-    }
+
 }
 
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    androidTestCompile('junit:junit:4.11')
+    androidTestCompile('junit:junit:4.+')
     androidTestCompile('org.robolectric:robolectric:2.3+')
     androidTestCompile('com.squareup:fest-android:1.0+')
+
 }
 robolectric {
     include '**/*Test.class'
     exclude '**/espresso/**/*.class'
 
-    maxHeapSize = "2048"
+    maxHeapSize = "2048m"
 }
