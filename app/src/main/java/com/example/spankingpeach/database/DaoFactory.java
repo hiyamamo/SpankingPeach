@@ -11,8 +11,11 @@ import java.io.IOException;
  * Created by hiroki on 2014/09/27.
  */
 public class DaoFactory {
-    public static Dao createDao(){
+    public static Dao createItemDao(){
         return new ItemDao(getDataSource());
+    }
+    public static Dao createStageDao(){
+        return new StageDao(getDataSource());
     }
 
     private static SQLiteDatabase getDataSource(){
