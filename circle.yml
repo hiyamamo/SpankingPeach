@@ -6,6 +6,7 @@ dependencies:
   pre:
     - echo y | android update sdk --no-ui --filter "android-20"
     - echo y | android update sdk --no-ui --filter "build-tools-20.0.0"
+    - echo y | android update sdk --all --filter extra-android-m2repository --no-ui --force
 
   override:
     - ./gradlew dependencies
