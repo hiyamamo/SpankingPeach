@@ -40,6 +40,6 @@ dependencies {
 robolectric {
     include '**/*Test.class'
     exclude '**/espresso/**/*.class'
-    
+
     maxHeapSize = "2048m"
 }
