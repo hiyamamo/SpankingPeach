@@ -16,7 +16,7 @@ public class Target {
     // 座標を計算する
     public boolean calcCoord() {
         mY = mY + mSpeed;
-        if(mY <= 0){
+        if(mY >= 900){
             return false;
         }
         return true;

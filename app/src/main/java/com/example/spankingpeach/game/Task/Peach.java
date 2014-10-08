@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import com.example.spankingpeach.App;
 import com.example.spankingpeach.Entity.Stage;
 import com.example.spankingpeach.R;
+import com.example.spankingpeach.game.Score;
 import com.example.spankingpeach.game.target.Target;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class Peach extends Task{
         }
         for(Iterator<Target> target = mTargets.iterator();target.hasNext();) {
             if(!target.next().calcCoord()){
+                Score.life--;
                 target.remove();
             }
         }
@@ -77,6 +79,7 @@ public class Peach extends Task{
         for(Iterator<Target> target = mTargets.iterator();target.hasNext();) {
             if(isInTouchRange(x, y, target.next())) {
                 target.remove();
+                Score.hitScore++;
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.spankingpeach.game.state;
 import android.graphics.Canvas;
 
 import com.example.spankingpeach.game.GameMng;
+import com.example.spankingpeach.game.Score;
 import com.example.spankingpeach.game.Task.Gage;
 import com.example.spankingpeach.game.Task.Peach;
 import com.example.spankingpeach.game.Task.Task;
@@ -24,10 +25,10 @@ public class InGame extends ConcreteState{
         LinkedList<Task> taskList = new LinkedList<Task>();
         super.onUpdate(manager);
         taskList.add(Peach.getInstance());
-        if(Gage.getInstance().IsEnd()){
+        if(Score.isClear()){
             manager.setState(Clear.getInstance());
         }
-        if(Timer.getInstance().IsTimeUp()){
+        if(Score.isGameOver()){
             manager.setState(TimeUp.getInstance());
         }
         execUpdate(taskList);
