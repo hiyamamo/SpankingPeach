@@ -22,8 +22,6 @@ public class Peach extends Task{
     private static Peach mInstance = new Peach();
     private Paint paint = new Paint();
     private Bitmap bitmap;
-    private final float POSITION_X = 90; // X座標
-    private final float POSITION_Y = 550; // Y座標
     private ArrayList<Target> mTargets = new ArrayList<Target>();
     private int mInterval; // ターゲットが出現するインターバル. stageによって変化
     private int mStageLevel = 1;
@@ -32,28 +30,15 @@ public class Peach extends Task{
     public static Peach getInstance(){
         return mInstance;
     }
-    private float mTouchRangeMaxX;
-    private float mTouchRangeMaxY;
-    private boolean isTouched;
     private long mPrevTime = 0;
     private long mNowTime = 0;
 
     private Peach() {
         Resources res = App.getContext().getResources();
         bitmap = BitmapFactory.decodeResource(res, R.drawable.peach);
-        mTouchRangeMaxX = (bitmap.getWidth() + POSITION_X);
-        mTouchRangeMaxY = (bitmap.getHeight() + POSITION_Y);
         mTargets.add(new Target(50,0,10));
         mInterval = 30;
     }
-
-    public boolean checkTouchRange(float x,float y){
-        if(x > POSITION_X && x < mTouchRangeMaxX && y > POSITION_Y && y < mTouchRangeMaxY){
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean onUpdate() {
         if(isNewTarget()) {
@@ -89,7 +74,19 @@ public class Peach extends Task{
 
     @Override
     public void onTouch(float x, float y) {
-        isTouched = checkTouchRange(x,y);
+        for(Iterator<Target> target = mTargets.iterator();target.hasNext();) {
+            if(isInTouchRange(x, y, target.next())) {
+                target.remove();
+            }
+        }
+    }
+
+    public boolean isInTouchRange(float x, float y, Target t){
+        if( x > t.getX() && x < t.getX() + bitmap.getWidth() &&
+                y > t.getY() && y < t.getY() + bitmap.getHeight()){
+            return true;
+        }
+        return false;
     }
 
 
