@@ -12,6 +12,8 @@ import com.example.spankingpeach.R;
 import com.example.spankingpeach.game.target.Target;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Created by dev on 14/07/29.
@@ -22,7 +24,7 @@ public class Peach extends Task{
     private Bitmap bitmap;
     private final float POSITION_X = 90; // X座標
     private final float POSITION_Y = 550; // Y座標
-    private ArrayList<Target> mTarget;
+    private ArrayList<Target> mTargets = new ArrayList<Target>();
     private int mInterval; // ターゲットが出現するインターバル. stageによって変化
     private int mStageLevel = 1;
     private Stage mStage = new Stage(mStageLevel);
@@ -33,13 +35,16 @@ public class Peach extends Task{
     private float mTouchRangeMaxX;
     private float mTouchRangeMaxY;
     private boolean isTouched;
+    private long mPrevTime = 0;
+    private long mNowTime = 0;
 
     private Peach() {
         Resources res = App.getContext().getResources();
         bitmap = BitmapFactory.decodeResource(res, R.drawable.peach);
-
         mTouchRangeMaxX = (bitmap.getWidth() + POSITION_X);
         mTouchRangeMaxY = (bitmap.getHeight() + POSITION_Y);
+        mTargets.add(new Target(50,0,10));
+        mInterval = 30;
     }
 
     public boolean checkTouchRange(float x,float y){
@@ -53,15 +58,23 @@ public class Peach extends Task{
     public boolean onUpdate() {
         if(isNewTarget()) {
             int x = getRandomX();
-            mTarget.add(new Target(x, 0,mStage.getSpeed()));
+            //mTargets.add(new Target(x, 0,mStage.getSpeed()));
+            mTargets.add(new Target(x, 0, 10));
         }
+        for(Iterator<Target> target = mTargets.iterator();target.hasNext();) {
+            if(!target.next().calcCoord()){
+                target.remove();
+            }
+        }
+        mNowTime++;
         return super.onUpdate();
     }
     // ターゲットのインスタンスを作成するか判定
     // 前回作成した時間と現在時間のオフセットがインターバルより大きければ作成する.
     private boolean isNewTarget(){
-        int time_left = 30;
+        long time_left = mNowTime - mPrevTime;
         if(time_left > mInterval){
+            mPrevTime = mNowTime;
             return true;
         }
 
@@ -69,14 +82,10 @@ public class Peach extends Task{
     }
     // ターゲットインスタンス作成時のx座標を返す
     private int getRandomX(){
-        return 300;
+        Random r = new Random(System.currentTimeMillis());
+        return r.nextInt(400) + 50;
     }
 
-    public void nextStage(){
-        mStageLevel++;
-        mStage = new Stage(mStageLevel);
-        mInterval = mStage.getInteravl();
-    }
 
     @Override
     public void onTouch(float x, float y) {
@@ -86,6 +95,8 @@ public class Peach extends Task{
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawBitmap(bitmap,POSITION_X,POSITION_Y,paint);
+        for(Target target : mTargets) {
+            c.drawBitmap(bitmap, target.getX(),target.getY(),paint);
+        }
     }
 }

@@ -14,8 +14,12 @@ public class Target {
     }
 
     // 座標を計算する
-    public void calcCoord() {
-        mY = mY - mSpeed;
+    public boolean calcCoord() {
+        mY = mY + mSpeed;
+        if(mY <= 0){
+            return false;
+        }
+        return true;
     }
 
     public int getX(){

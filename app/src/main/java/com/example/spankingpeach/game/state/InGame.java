@@ -25,8 +25,7 @@ public class InGame extends ConcreteState{
     public void onUpdate(GameMng manager) {
         LinkedList<Task> taskList = new LinkedList<Task>();
         super.onUpdate(manager);
-        taskList.add(Gage.getInstance());
-        taskList.add(Timer.getInstance());
+        taskList.add(Peach.getInstance());
         if(Gage.getInstance().IsEnd()){
             manager.setState(Clear.getInstance());
         }
@@ -49,5 +48,8 @@ public class InGame extends ConcreteState{
     @Override
     public void onDraw(GameMng manager, Canvas c) {
         super.onDraw(manager,c);
+        LinkedList<Task> list = new LinkedList<Task>();
+        list.add(Peach.getInstance());
+        execDraw(list, c);
     }
 }

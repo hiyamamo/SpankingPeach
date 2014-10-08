@@ -33,10 +33,7 @@ public abstract class ConcreteState implements State{
     public void onDraw(GameMng manager, Canvas c) {
         LinkedList<Task> taskList = new LinkedList<Task>();
         taskList.add(Bg.getInstance());
-        taskList.add(Peach.getInstance());
-        taskList.add(Gage.getInstance());
         taskList.add(FpsController.getInstance());
-        taskList.add(Timer.getInstance());
         taskList.add(ItemIcon.getInstance());
 
         execDraw(taskList, c);
