@@ -1,4 +1,4 @@
-package com.example.spankingpeach.Entity;
+package com.example.spankingpeach.entity;
 
 import android.database.Cursor;
 import android.graphics.Bitmap;

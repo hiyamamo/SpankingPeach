@@ -11,7 +11,7 @@ public class StageDao implements Dao{
     private static final String TABLE_NAME = "stage";
     private static final String COLUMN_ID = "_id";
     private static final String WHERE = "_id=";
-    private static final String[] COLUMNS = {"_id","name","bg",};
+    private static final String[] COLUMNS = {"_id","name","bg","interval","speed"};
 
     public StageDao(SQLiteDatabase mDb) {
         this.mDb = mDb;

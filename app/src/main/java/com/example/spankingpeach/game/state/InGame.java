@@ -2,12 +2,12 @@ package com.example.spankingpeach.game.state;
 
 import android.graphics.Canvas;
 
+import com.example.spankingpeach.entity.Stage;
 import com.example.spankingpeach.game.GameMng;
 import com.example.spankingpeach.game.Score;
-import com.example.spankingpeach.game.Task.Gage;
-import com.example.spankingpeach.game.Task.Peach;
-import com.example.spankingpeach.game.Task.Task;
-import com.example.spankingpeach.game.Task.Timer;
+import com.example.spankingpeach.game.task.ClearChar;
+import com.example.spankingpeach.game.task.Peach;
+import com.example.spankingpeach.game.task.Task;
 
 import java.util.LinkedList;
 
@@ -26,12 +26,17 @@ public class InGame extends ConcreteState{
         super.onUpdate(manager);
         taskList.add(Peach.getInstance());
         if(Score.isClear()){
-            manager.setState(Clear.getInstance());
+            clear(manager);
         }
         if(Score.isGameOver()){
             manager.setState(TimeUp.getInstance());
         }
         execUpdate(taskList);
+    }
+    private void clear(GameMng manager){
+        manager.setState(Clear.getInstance());
+        ClearChar.getInstance().init();
+        Peach.getInstance().init();
     }
 
     @Override
@@ -42,10 +47,9 @@ public class InGame extends ConcreteState{
     }
 
     @Override
-    public void onDraw(GameMng manager, Canvas c) {
-        super.onDraw(manager,c);
-        LinkedList<Task> list = new LinkedList<Task>();
-        list.add(Peach.getInstance());
-        execDraw(list, c);
+    public void onDraw(GameMng manager, Canvas c, LinkedList<Task> tsklist) {
+        tsklist = getDefaultDrawTasks();
+        tsklist.add(Peach.getInstance());
+        execDraw(tsklist, c);
     }
 }

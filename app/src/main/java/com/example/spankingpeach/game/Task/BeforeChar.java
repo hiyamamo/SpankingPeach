@@ -1,4 +1,4 @@
-package com.example.spankingpeach.game.Task;
+package com.example.spankingpeach.game.task;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

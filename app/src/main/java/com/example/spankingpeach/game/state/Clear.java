@@ -2,13 +2,10 @@ package com.example.spankingpeach.game.state;
 
 import android.graphics.Canvas;
 
+import com.example.spankingpeach.entity.Stage;
 import com.example.spankingpeach.game.GameMng;
-import com.example.spankingpeach.game.Task.Bg;
-import com.example.spankingpeach.game.Task.FpsController;
-import com.example.spankingpeach.game.Task.Gage;
-import com.example.spankingpeach.game.Task.Peach;
-import com.example.spankingpeach.game.Task.Task;
-import com.example.spankingpeach.game.Task.Timer;
+import com.example.spankingpeach.game.task.ClearChar;
+import com.example.spankingpeach.game.task.Task;
 
 import java.util.LinkedList;
 
@@ -23,11 +20,25 @@ public class Clear extends ConcreteState{
 
     @Override
     public void onTouch(GameMng manager, float x, float y) {
-
+        LinkedList<Task> tsklist = new LinkedList<Task>();
+        tsklist.add(ClearChar.getInstance());
+        execTouch(tsklist,x,y);
     }
 
     @Override
-    public void onDraw(GameMng manager, Canvas c) {
-        super.onDraw(manager,c);
+    public void onUpdate(GameMng manager) {
+        super.onUpdate(manager);
+        if(ClearChar.getInstance().isTouched()){
+            manager.setState(InGame.getInstance());
+            Stage.getInstance().nextLevel();
+        }
+    }
+
+    @Override
+    public void onDraw(GameMng manager, Canvas c, LinkedList<Task> tsklist) {
+        tsklist = getDefaultDrawTasks();
+        tsklist.add(ClearChar.getInstance());
+
+        execDraw(tsklist,c);
     }
 }

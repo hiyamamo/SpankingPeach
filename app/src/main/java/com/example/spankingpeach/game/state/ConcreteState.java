@@ -3,13 +3,10 @@ package com.example.spankingpeach.game.state;
 import android.graphics.Canvas;
 
 import com.example.spankingpeach.game.GameMng;
-import com.example.spankingpeach.game.Task.Bg;
-import com.example.spankingpeach.game.Task.FpsController;
-import com.example.spankingpeach.game.Task.Gage;
-import com.example.spankingpeach.game.Task.ItemIcon;
-import com.example.spankingpeach.game.Task.Peach;
-import com.example.spankingpeach.game.Task.Task;
-import com.example.spankingpeach.game.Task.Timer;
+import com.example.spankingpeach.game.task.Bg;
+import com.example.spankingpeach.game.task.FpsController;
+import com.example.spankingpeach.game.task.ItemIcon;
+import com.example.spankingpeach.game.task.Task;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -30,13 +27,10 @@ public abstract class ConcreteState implements State{
     }
 
     @Override
-    public void onDraw(GameMng manager, Canvas c) {
-        LinkedList<Task> taskList = new LinkedList<Task>();
-        taskList.add(Bg.getInstance());
-        taskList.add(FpsController.getInstance());
-        taskList.add(ItemIcon.getInstance());
+    public void onDraw(GameMng manager, Canvas c, LinkedList<Task> tsklist) {
+        tsklist = getDefaultDrawTasks();
 
-        execDraw(taskList, c);
+        execDraw(tsklist, c);
     }
     // アップデート処理実行関数
     protected void execUpdate(LinkedList<Task> taskList){
@@ -55,5 +49,13 @@ public abstract class ConcreteState implements State{
         for(Task t : taskList){
             t.onDraw(c);
         }
+    }
+    protected LinkedList<Task> getDefaultDrawTasks(){
+        LinkedList<Task> tsklist = new LinkedList<Task>();
+        tsklist.add(Bg.getInstance());
+        tsklist.add(FpsController.getInstance());
+        tsklist.add(ItemIcon.getInstance());
+
+        return tsklist;
     }
 }

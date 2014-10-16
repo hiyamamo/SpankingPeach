@@ -1,4 +1,4 @@
-package com.example.spankingpeach.game.View;
+package com.example.spankingpeach.game.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

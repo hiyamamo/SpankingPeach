@@ -7,6 +7,10 @@ import android.view.View;
 
 import com.example.spankingpeach.game.state.Before;
 import com.example.spankingpeach.game.state.State;
+import com.example.spankingpeach.game.task.Task;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by dev on 14/07/29.
@@ -32,8 +36,9 @@ public class GameMng {
         return true;
     }
     public void onDraw(Canvas c){
+        LinkedList<Task> tsklist = new LinkedList<Task>();
         c.drawColor(Color.WHITE);
-        mState.onDraw(this,c);
+        mState.onDraw(this,c, tsklist);
     }
 
     //タッチリスナーインスタンス生成

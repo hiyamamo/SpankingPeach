@@ -1,4 +1,4 @@
-package com.example.spankingpeach.Entity;
+package com.example.spankingpeach.entity;
 
 /**
  * Created by hiroki on 2014/09/28.

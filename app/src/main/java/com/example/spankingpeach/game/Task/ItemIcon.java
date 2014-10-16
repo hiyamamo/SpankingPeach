@@ -1,10 +1,10 @@
-package com.example.spankingpeach.game.Task;
+package com.example.spankingpeach.game.task;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.spankingpeach.Entity.Item;
+import com.example.spankingpeach.entity.Item;
 
 /**
  * Created by hiroki on 2014/09/27.

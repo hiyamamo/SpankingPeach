@@ -17,7 +17,7 @@ import java.io.OutputStream;
 public class OpenHelper extends SQLiteOpenHelper{
     private static final String DB_NAME = "peach";
     private static String DB_NAME_ASSET = "peach.db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;

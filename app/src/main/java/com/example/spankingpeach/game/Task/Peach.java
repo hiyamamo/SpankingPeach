@@ -1,4 +1,4 @@
-package com.example.spankingpeach.game.Task;
+package com.example.spankingpeach.game.task;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.spankingpeach.App;
-import com.example.spankingpeach.Entity.Stage;
+import com.example.spankingpeach.entity.Stage;
 import com.example.spankingpeach.R;
 import com.example.spankingpeach.game.Score;
 import com.example.spankingpeach.game.target.Target;
@@ -24,28 +24,32 @@ public class Peach extends Task{
     private Paint paint = new Paint();
     private Bitmap bitmap;
     private ArrayList<Target> mTargets = new ArrayList<Target>();
-    private int mInterval; // ターゲットが出現するインターバル. stageによって変化
-    private int mStageLevel = 1;
-    private Stage mStage = new Stage(mStageLevel);
 
     public static Peach getInstance(){
         return mInstance;
     }
     private long mPrevTime = 0;
     private long mNowTime = 0;
+    private Stage mStage = Stage.getInstance();
 
     private Peach() {
         Resources res = App.getContext().getResources();
         bitmap = BitmapFactory.decodeResource(res, R.drawable.peach);
-        mTargets.add(new Target(50,0,10));
-        mInterval = 30;
+        new_target();
+    }
+    public void init(){
+        mPrevTime = 0;
+        mNowTime = 0;
+        mTargets.clear();
+        new_target();
+    }
+    private void new_target(){
+        mTargets.add(new Target(getRandomX(), 0, mStage.getSpeed()));
     }
     @Override
     public boolean onUpdate() {
         if(isNewTarget()) {
-            int x = getRandomX();
-            //mTargets.add(new Target(x, 0,mStage.getSpeed()));
-            mTargets.add(new Target(x, 0, 10));
+            new_target();
         }
         for(Iterator<Target> target = mTargets.iterator();target.hasNext();) {
             if(!target.next().calcCoord()){
@@ -60,7 +64,7 @@ public class Peach extends Task{
     // 前回作成した時間と現在時間のオフセットがインターバルより大きければ作成する.
     private boolean isNewTarget(){
         long time_left = mNowTime - mPrevTime;
-        if(time_left > mInterval){
+        if(time_left > mStage.getInteravl()){
             mPrevTime = mNowTime;
             return true;
         }
@@ -70,7 +74,7 @@ public class Peach extends Task{
     // ターゲットインスタンス作成時のx座標を返す
     private int getRandomX(){
         Random r = new Random(System.currentTimeMillis());
-        return r.nextInt(400) + 50;
+        return r.nextInt(400);
     }
 
 
